@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 22:46:32 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 20:21:19 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 22:21:19 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void 					init_ws(t_env *e)
 	e->v_tab = (cl_float4*)malloc(sizeof(cl_float4) * e->ocl.gws);
 	if (e->v_tab == NULL)
 		exit_prog(e, "Malloc error\n");
-	e->tab = (cl_float*)malloc(sizeof(cl_float) * e->ocl.gws);
+	e->tab = (cl_uchar3*)malloc(sizeof(cl_uchar3) * e->ocl.gws);
 	if (e->tab == NULL)
 		exit_prog(e, "Malloc error\n");
 }
 
-void					init_opencl(t_env *e)
+void					init_opencl(t_env *e, int name)
 {
 	cl_device_id		device_id = NULL;
 	cl_platform_id		platform_id = NULL;
@@ -73,19 +73,22 @@ void					init_opencl(t_env *e)
 	e->ocl.v_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
 			e->ocl.gws * sizeof(cl_float4), NULL, &ret);
 	e->ocl.tab_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_WRITE_ONLY,
-            e->ocl.gws * sizeof(cl_float4), NULL, &ret);
+            e->ocl.gws * sizeof(cl_uchar3), NULL, &ret);
 
 		/* Create Kernel Program from the source */
 	e->ocl.program = clCreateProgramWithSource(e->ocl.context, 1,
 		(const char **)&source_str,	(const size_t *)&source_size, &ret);
-
-	free(source_str);
+	if (source_str)
+		free(source_str);
 
 		/* Build Kernel Program */
 	ret = clBuildProgram(e->ocl.program, 1, &device_id, NULL, NULL, NULL);
 
 		/* Create OpenCL Kernel */
-	e->ocl.kernel = clCreateKernel(e->ocl.program, "draw", &ret);
+	if (name == MANDEL)
+		e->ocl.kernel = clCreateKernel(e->ocl.program, "mandel", &ret);
+	if (name == JULIA)
+		e->ocl.kernel = clCreateKernel(e->ocl.program, "julia", &ret);
 
 		/* Set OpenCL Kernel Parameters */
 	ret = clSetKernelArg(e->ocl.kernel, 0, sizeof(cl_mem), (void *)&(e->ocl.v_mem_obj));

@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 20:22:00 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 21:12:15 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void				put_pixel(int x, int y, t_color col, t_env *e)
 	e->mlx.string[x * 4 + y * e->mlx.size_line + 2] = col.red;
 }
 
-t_color				set_color(float r)
+t_color				set_color(cl_uchar3 tab)
 {
 	t_color			color;
 
-	color.red = 255 * r;
-	color.gre = 255 - 255 * r;
-	color.blu = 255 * r;
+	color.red = tab.x;
+	color.gre = tab.y;
+	color.blu = tab.z;
 	return (color);
 }
 
@@ -40,9 +40,12 @@ void				draw(t_env *e, cl_float4 v)
 	i = -1;
 	while (++i < (int)e->ocl.gws)
 		e->v_tab[i] = v;
-	ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.v_mem_obj, CL_TRUE, 0,	e->ocl.gws * sizeof(cl_float4), e->v_tab, 0, NULL, NULL);
-	ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, NULL, &(e->ocl.gws), &(e->ocl.lws), 0, NULL, NULL);
-	ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, CL_TRUE, 0,	e->ocl.gws * sizeof(float), e->tab, 0, NULL, NULL);
+	ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.v_mem_obj, \
+		CL_TRUE, 0, e->ocl.gws * sizeof(cl_float4), e->v_tab, 0, NULL, NULL);
+	ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, \
+		NULL, &(e->ocl.gws), &(e->ocl.lws), 0, NULL, NULL);
+	ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, \
+		CL_TRUE, 0, e->ocl.gws * sizeof(cl_uchar3), e->tab, 0, NULL, NULL);
 	i = -1;
 	while (++i < (int)e->ocl.gws)
 	{

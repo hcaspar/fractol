@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 20:19:33 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 22:15:44 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "keys.h"
+# include <math.h>
 # include <stdlib.h>
 # include <mlx.h>
 # include <stdio.h>
@@ -25,8 +26,11 @@
 #  include <CL/cl.h>
 # endif
 
-# define MAX_X 860
-# define MAX_Y 860
+# define MAX_X 1024
+# define MAX_Y 1024
+
+# define MANDEL 1
+# define JULIA 2
 
 # define MAX_SOURCE_SIZE (0x100000)
 
@@ -66,6 +70,8 @@ typedef struct			s_state
 	int					back;
 	int					right;
 	int					left;
+	int					it_add;
+	int					it_sub;
 }						t_state;
 
 typedef struct			s_env
@@ -75,8 +81,9 @@ typedef struct			s_env
 	t_state				state;
 	cl_float4			v;
 	cl_float4			v_init;
-	cl_float			*tab;
+	cl_uchar3			*tab;
 	cl_float4			*v_tab;
+	float				zoom;
 }						t_env;
 
 void					exit_prog(t_env *e, char *msg);
@@ -88,10 +95,14 @@ void					init_image(t_env *e);
 void					draw(t_env *e, cl_float4 v);
 int						redraw(t_env *e);
 
+int						mouse_hook(int keycode, int x, int y, t_env *e);
 int						key_press(int keycode, t_env *e);
 int						key_release(int keycode, t_env *e);
 void					state_loop(t_env *e);
 
-void					init_opencl(t_env *e);
+void					zoom_in(int x, int y, t_env *e);
+void					zoom_out(int x, int y, t_env *e);
+
+void					init_opencl(t_env *e, int name);
 
 #endif
