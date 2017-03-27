@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/26 23:33:36 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 17:49:55 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,60 +31,50 @@ t_color				set_color(float r)
 
 void				draw(t_env *e, cl_float4 v)
 {
-	float			x;
-	float			y;
-	float			zoom_x;
-	float			zoom_y;
-	float			i;
+	int				ret;
+	int				x;
+	cl_int			y;
 	t_color			color;
-	float			c_r;
-	float			c_i;
-	float			z_r;
-	float			z_i;
-	float			tmp;
+	cl_float		tab[MAX_X];
+	cl_float4		v_tab[MAX_X];
+	cl_int			y_tab[MAX_X];
+	size_t			global_item_size;
+	size_t			local_item_size;
 
-	zoom_x = MAX_X / e->v.z;
-	zoom_y = MAX_Y / e->v.z;
+	global_item_size = MAX_X;
+	local_item_size = MAX_X;
 	y = -1;
 	while (++y < MAX_Y)
 	{
 		x = -1;
 		while (++x < MAX_X)
 		{
-			c_r = x / zoom_x + v.x;
-			c_i = y / zoom_y + v.y;
-			z_r = 0;
-			z_i = 0;
-			i = 0;
-			tmp = z_r;
-			z_r = z_r * z_r - z_i * z_i + c_r;
-			z_i = 2 * z_i * tmp + c_i;
-			i++;
-			while (z_r * z_r + z_i * z_i < 4 && i < v.w)
-			{
-				tmp = z_r;
-				z_r = z_r * z_r - z_i * z_i + c_r;
-				z_i = 2 * z_i * tmp + c_i;
-				i++;
-			}
-			color = set_color(i / v.w);
+			v_tab[x] = v;
+			y_tab[x] = y;
+		}
+		/* Execute OpenCL Kernel */
+		ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.v_mem_obj, CL_TRUE, 0,	MAX_X * sizeof(cl_float4), v_tab, 0, NULL, NULL);
+		ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.y_mem_obj, CL_TRUE, 0,	MAX_X * sizeof(cl_int), y_tab, 0, NULL, NULL);
+		ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, NULL, &global_item_size, &local_item_size, 0, NULL, NULL);
+
+		/* Copy results from the memory buffer */
+		ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, CL_TRUE, 0,	MAX_X * sizeof(float), tab, 0, NULL, NULL);
+		x = -1;
+		while (++x < MAX_X)
+		{
+			color = set_color(tab[x]);
 			put_pixel(x, y, color, e);
 		}
 	}
 }
-//
-// /* Execute OpenCL Kernel */
-// ret = clEnqueueWriteBuffer(command_queue, a_mem_obj, CL_TRUE, 0,
-// 	MAX_X * sizeof(float4), A, 0, NULL, NULL);
-// size_t global_item_size = MAX_X;
-// size_t local_item_size = MAX_X;
-// ret = clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL,
-// &global_item_size, &local_item_size, 0, NULL, NULL);
-//
-// /* Copy results from the memory buffer */
-// ret = clEnqueueReadBuffer(command_queue, c_mem_obj, CL_TRUE, 0,
-// MEM_SIZE * sizeof(int), C, 0, NULL, NULL);
-//
-// /* Display Result */
-// for (i = 0; i < MEM_SIZE; i++)
-// printf("%d\n", C[i]);
+
+int					redraw(t_env *e)
+{
+	init_image(e);
+	state_loop(e);
+	draw(e, e->v);
+	mlx_put_image_to_window(e->mlx.mlx_ptr, e->mlx.win_ptr, \
+							e->mlx.image, 0, 0);
+	mlx_destroy_image(e->mlx.mlx_ptr, e->mlx.image);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/26 23:31:02 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 17:43:36 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "keys.h"
 # include <stdlib.h>
 # include <mlx.h>
+# include <stdio.h>
 
 # ifdef __APPLE__
 #  include <OpenCL/opencl.h>
@@ -54,6 +55,8 @@ typedef struct			s_ocl
 	cl_program			program;
 	cl_kernel			kernel;
 	cl_mem				v_mem_obj;
+	cl_mem				y_mem_obj;
+	cl_mem				tab_mem_obj;
 }						t_ocl;
 
 typedef struct			s_state
@@ -84,6 +87,7 @@ int						redraw(t_env *e);
 
 int						key_press(int keycode, t_env *e);
 int						key_release(int keycode, t_env *e);
+void					state_loop(t_env *e);
 
 void					init_opencl(t_env *e);
 

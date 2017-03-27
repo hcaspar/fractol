@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:32:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/26 23:21:56 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 16:38:28 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_env				*init_env(void)
 	return (e);
 }
 
-cl_float4			init_values(void)
+cl_float4			init_values(cl_float4 *v_init)
 {
 	cl_float4		v;
 
@@ -30,6 +30,7 @@ cl_float4			init_values(void)
 	v.y = -1.2;
 	v.z = 2.4;
 	v.w = 50;
+	*(v_init) = v;
 	return (v);
 }
 
@@ -53,19 +54,12 @@ int					main(int ac, char **av)
 	i = 1;
 	if (ac < 2)
 		exit_prog(e, "Missing argument\n");
+	e = init_env();
+	e->state = init_states();
+	init_opencl(e);
 	if (av[1])
-	{
-		e = init_env();
-		e->state = init_states();
-		init_opencl(e);
-		new_window(e);
-		init_image(e);
-		e->v_init = init_values();
-		e->v = e->v_init;
-		draw(e, e->v);
-	}
-	mlx_put_image_to_window(e->mlx.mlx_ptr, e->mlx.win_ptr, \
-							e->mlx.image, 0, 0);
+		e->v = init_values(&e->v_init);
+	new_window(e);
 	mlx_hook(e->mlx.win_ptr, 2, (1L << 0), key_press, e);
 	mlx_hook(e->mlx.win_ptr, 3, (1L << 0), key_release, e);
 	mlx_hook(e->mlx.win_ptr, 17, (1L << 17), red_cross, e);

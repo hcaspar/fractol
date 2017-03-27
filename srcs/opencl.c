@@ -6,12 +6,11 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 22:46:32 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/26 23:27:43 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 17:50:04 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include <stdio.h>
 
 void					init_opencl(t_env *e)
 {
@@ -26,6 +25,7 @@ void					init_opencl(t_env *e)
 	e->ocl.program = NULL;
 	e->ocl.kernel = NULL;
 	e->ocl.v_mem_obj = NULL;
+	e->ocl.y_mem_obj = NULL;
 
 	FILE *fp;
 	char fileName[] = "srcs/kernel.cl";
@@ -54,7 +54,12 @@ void					init_opencl(t_env *e)
 	e->ocl.command_queue = clCreateCommandQueue(e->ocl.context, device_id, 0, &ret);
 
 		/* Create Memory Buffer */
+
 	e->ocl.v_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
+			MAX_X * sizeof(cl_float4), NULL, &ret);
+	e->ocl.y_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
+			MAX_X * sizeof(int), NULL, &ret);
+	e->ocl.tab_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_WRITE_ONLY,
             MAX_X * sizeof(cl_float4), NULL, &ret);
 
 		/* Create Kernel Program from the source */
@@ -71,4 +76,6 @@ void					init_opencl(t_env *e)
 
 		/* Set OpenCL Kernel Parameters */
 	ret = clSetKernelArg(e->ocl.kernel, 0, sizeof(cl_mem), (void *)&(e->ocl.v_mem_obj));
+	ret = clSetKernelArg(e->ocl.kernel, 1, sizeof(cl_mem), (void *)&(e->ocl.y_mem_obj));
+	ret = clSetKernelArg(e->ocl.kernel, 2, sizeof(cl_mem), (void *)&(e->ocl.tab_mem_obj));
 }

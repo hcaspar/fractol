@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:07:06 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/26 23:24:51 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 16:33:24 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void			exit_prog(t_env *e, char *msg)
 	if (e)
 	{
 		finalization(e);
-		if (e->mlx.image)
-			mlx_destroy_image(e->mlx.mlx_ptr, e->mlx.image);
 		if (e->mlx.win_ptr)
 			mlx_destroy_window(e->mlx.mlx_ptr, e->mlx.win_ptr);
 		free(e);

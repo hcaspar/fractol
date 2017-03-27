@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:29:38 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/26 22:24:25 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 16:27:13 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,5 @@ int			key_release(int keycode, t_env *e)
 		e->state.right = 0;
 	if (keycode == A)
 		e->state.left = 0;
-	return (0);
-}
-
-int			redraw(t_env *e)
-{
-	mlx_destroy_image(e->mlx.mlx_ptr, e->mlx.image);
-	init_image(e);
-	state_loop(e);
-	draw(e, e->v);
-	mlx_put_image_to_window(e->mlx.mlx_ptr, e->mlx.win_ptr, \
-							e->mlx.image, 0, 0);
 	return (0);
 }
