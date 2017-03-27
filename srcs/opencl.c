@@ -6,11 +6,25 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 22:46:32 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 17:50:04 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 20:21:19 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+void 					init_ws(t_env *e)
+{
+	e->ocl.gws = MAX_X * MAX_Y;
+	e->ocl.lws = 1024;
+	while (e->ocl.lws > e->ocl.gws || e->ocl.gws % e->ocl.lws != 0)
+		e->ocl.lws /= 2;
+	e->v_tab = (cl_float4*)malloc(sizeof(cl_float4) * e->ocl.gws);
+	if (e->v_tab == NULL)
+		exit_prog(e, "Malloc error\n");
+	e->tab = (cl_float*)malloc(sizeof(cl_float) * e->ocl.gws);
+	if (e->tab == NULL)
+		exit_prog(e, "Malloc error\n");
+}
 
 void					init_opencl(t_env *e)
 {
@@ -25,7 +39,8 @@ void					init_opencl(t_env *e)
 	e->ocl.program = NULL;
 	e->ocl.kernel = NULL;
 	e->ocl.v_mem_obj = NULL;
-	e->ocl.y_mem_obj = NULL;
+
+	init_ws(e);
 
 	FILE *fp;
 	char fileName[] = "srcs/kernel.cl";
@@ -56,11 +71,9 @@ void					init_opencl(t_env *e)
 		/* Create Memory Buffer */
 
 	e->ocl.v_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
-			MAX_X * sizeof(cl_float4), NULL, &ret);
-	e->ocl.y_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
-			MAX_X * sizeof(int), NULL, &ret);
+			e->ocl.gws * sizeof(cl_float4), NULL, &ret);
 	e->ocl.tab_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_WRITE_ONLY,
-            MAX_X * sizeof(cl_float4), NULL, &ret);
+            e->ocl.gws * sizeof(cl_float4), NULL, &ret);
 
 		/* Create Kernel Program from the source */
 	e->ocl.program = clCreateProgramWithSource(e->ocl.context, 1,
@@ -76,6 +89,5 @@ void					init_opencl(t_env *e)
 
 		/* Set OpenCL Kernel Parameters */
 	ret = clSetKernelArg(e->ocl.kernel, 0, sizeof(cl_mem), (void *)&(e->ocl.v_mem_obj));
-	ret = clSetKernelArg(e->ocl.kernel, 1, sizeof(cl_mem), (void *)&(e->ocl.y_mem_obj));
-	ret = clSetKernelArg(e->ocl.kernel, 2, sizeof(cl_mem), (void *)&(e->ocl.tab_mem_obj));
+	ret = clSetKernelArg(e->ocl.kernel, 1, sizeof(cl_mem), (void *)&(e->ocl.tab_mem_obj));
 }

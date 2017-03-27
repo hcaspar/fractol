@@ -1,11 +1,12 @@
 __kernel	void	draw(__global float4 *v,
-						 __global int *y,
 						 __global float *tab)
 {
 	int				id;
 	float			zoom_x;
 	float			zoom_y;
 	float			i;
+	int				x;
+	int				y;
 	float			c_r;
 	float			c_i;
 	float			z_r;
@@ -13,10 +14,12 @@ __kernel	void	draw(__global float4 *v,
 	float			tmp;
 
 	id = get_global_id(0);
+	y = id / 860;
+	x = id % 860;
 	zoom_x = 860 / v[id].z;
 	zoom_y = 860 / v[id].z;
-	c_r = id / zoom_x + v[id].x;
-	c_i = y[id] / zoom_y + v[id].y;
+	c_r = x / zoom_x + v[id].x;
+	c_i = y / zoom_y + v[id].y;
 	z_r = 0;
 	z_i = 0;
 	i = 0;

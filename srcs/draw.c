@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 17:49:55 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 20:22:00 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,24 @@ t_color				set_color(float r)
 void				draw(t_env *e, cl_float4 v)
 {
 	int				ret;
+	int				i;
 	int				x;
-	cl_int			y;
+	int				y;
 	t_color			color;
-	cl_float		tab[MAX_X];
-	cl_float4		v_tab[MAX_X];
-	cl_int			y_tab[MAX_X];
-	size_t			global_item_size;
-	size_t			local_item_size;
 
-	global_item_size = MAX_X;
-	local_item_size = MAX_X;
-	y = -1;
-	while (++y < MAX_Y)
+	i = -1;
+	while (++i < (int)e->ocl.gws)
+		e->v_tab[i] = v;
+	ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.v_mem_obj, CL_TRUE, 0,	e->ocl.gws * sizeof(cl_float4), e->v_tab, 0, NULL, NULL);
+	ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, NULL, &(e->ocl.gws), &(e->ocl.lws), 0, NULL, NULL);
+	ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, CL_TRUE, 0,	e->ocl.gws * sizeof(float), e->tab, 0, NULL, NULL);
+	i = -1;
+	while (++i < (int)e->ocl.gws)
 	{
-		x = -1;
-		while (++x < MAX_X)
-		{
-			v_tab[x] = v;
-			y_tab[x] = y;
-		}
-		/* Execute OpenCL Kernel */
-		ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.v_mem_obj, CL_TRUE, 0,	MAX_X * sizeof(cl_float4), v_tab, 0, NULL, NULL);
-		ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.y_mem_obj, CL_TRUE, 0,	MAX_X * sizeof(cl_int), y_tab, 0, NULL, NULL);
-		ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, NULL, &global_item_size, &local_item_size, 0, NULL, NULL);
-
-		/* Copy results from the memory buffer */
-		ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, CL_TRUE, 0,	MAX_X * sizeof(float), tab, 0, NULL, NULL);
-		x = -1;
-		while (++x < MAX_X)
-		{
-			color = set_color(tab[x]);
-			put_pixel(x, y, color, e);
-		}
+		color = set_color(e->tab[i]);
+		y = i / MAX_X;
+		x = i % MAX_Y;
+		put_pixel(x, y, color, e);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 17:43:36 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/27 20:19:33 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ typedef struct			s_ocl
 	cl_program			program;
 	cl_kernel			kernel;
 	cl_mem				v_mem_obj;
-	cl_mem				y_mem_obj;
 	cl_mem				tab_mem_obj;
+	size_t				gws;
+	size_t				lws;
 }						t_ocl;
 
 typedef struct			s_state
@@ -74,6 +75,8 @@ typedef struct			s_env
 	t_state				state;
 	cl_float4			v;
 	cl_float4			v_init;
+	cl_float			*tab;
+	cl_float4			*v_tab;
 }						t_env;
 
 void					exit_prog(t_env *e, char *msg);
