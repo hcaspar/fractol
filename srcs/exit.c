@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:07:06 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 20:22:51 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 11:19:08 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void			exit_prog(t_env *e, char *msg)
 			free(e->tab);
 		if (e->v_tab)
 			free(e->v_tab);
+		if (e->c_tab)
+			free(e->c_tab);
 		if (e->mlx.win_ptr)
 			mlx_destroy_window(e->mlx.mlx_ptr, e->mlx.win_ptr);
 		free(e);

@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:29:38 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 21:57:25 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 11:33:11 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,6 @@ int			red_cross(t_env *e)
 {
 	exit_prog(e, NULL);
 	return (0);
-}
-
-void		state_loop(t_env *e)
-{
-	if (e->state.fwd)
-		e->v.y -= 0.1 * e->zoom;
-	if (e->state.back)
-		e->v.y += 0.1 * e->zoom;
-	if (e->state.right)
-		e->v.x += 0.1 * e->zoom;
-	if (e->state.left)
-		e->v.x -= 0.1 * e->zoom;
-	if (e->state.it_add)
-		e->v.w += 1.0;
-	if (e->state.it_sub && e->v.w > 1.0)
-		e->v.w -= 1.0;
 }
 
 int			key_press(int keycode, t_env *e)
@@ -49,6 +33,7 @@ int			key_press(int keycode, t_env *e)
 	{
 		e->zoom = 1.0;
 		e->v = e->v_init;
+		e->c = e->c_init;
 	}
 	if (keycode == UP)
 		e->state.it_add = 1;
@@ -80,5 +65,12 @@ int			mouse_hook(int keycode, int x, int y, t_env *e)
 		zoom_out(x, y, e);
 	if (keycode == 2)
 		zoom_in(x, y, e);
+	return (0);
+}
+
+int			motion_notify(int x, int y, t_env *e)
+{
+	e->c.x = e->c_init.x + ((float)x - MAX_X / 2) / 1000;
+	e->c.y = e->c_init.y + ((float)y - MAX_Y / 2) / 1000;
 	return (0);
 }

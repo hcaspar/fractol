@@ -6,13 +6,13 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/03/27 21:31:01 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/03/28 10:57:35 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRCS = main.c exit.c hooks.c draw.c opencl.c zoom.c
+SRCS = main.c exit.c hooks.c draw.c opencl.c func.c
 
 SRCS_DIR = srcs/
 

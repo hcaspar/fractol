@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 22:15:44 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 11:15:41 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct			s_ocl
 	cl_program			program;
 	cl_kernel			kernel;
 	cl_mem				v_mem_obj;
+	cl_mem				c_mem_obj;
 	cl_mem				tab_mem_obj;
 	size_t				gws;
 	size_t				lws;
@@ -81,6 +82,9 @@ typedef struct			s_env
 	t_state				state;
 	cl_float4			v;
 	cl_float4			v_init;
+	cl_float2			c;
+	cl_float2			c_init;
+	cl_float2			*c_tab;
 	cl_uchar3			*tab;
 	cl_float4			*v_tab;
 	float				zoom;
@@ -92,10 +96,11 @@ int						red_cross(t_env *e);
 void					new_window(t_env *e);
 void					init_image(t_env *e);
 
-void					draw(t_env *e, cl_float4 v);
+void					draw(t_env *e, cl_float4 v, cl_float2 c);
 int						redraw(t_env *e);
 
 int						mouse_hook(int keycode, int x, int y, t_env *e);
+int						motion_notify(int x, int y, t_env *e);
 int						key_press(int keycode, t_env *e);
 int						key_release(int keycode, t_env *e);
 void					state_loop(t_env *e);

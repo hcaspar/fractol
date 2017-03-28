@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 22:46:32 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 22:21:19 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 11:19:55 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void 					init_ws(t_env *e)
 		exit_prog(e, "Malloc error\n");
 	e->tab = (cl_uchar3*)malloc(sizeof(cl_uchar3) * e->ocl.gws);
 	if (e->tab == NULL)
+		exit_prog(e, "Malloc error\n");
+	e->c_tab = (cl_float2*)malloc(sizeof(cl_float2) * e->ocl.gws);
+	if (e->c_tab == NULL)
 		exit_prog(e, "Malloc error\n");
 }
 
@@ -74,6 +77,8 @@ void					init_opencl(t_env *e, int name)
 			e->ocl.gws * sizeof(cl_float4), NULL, &ret);
 	e->ocl.tab_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_WRITE_ONLY,
             e->ocl.gws * sizeof(cl_uchar3), NULL, &ret);
+	e->ocl.c_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
+			e->ocl.gws * sizeof(cl_float2), NULL, &ret);
 
 		/* Create Kernel Program from the source */
 	e->ocl.program = clCreateProgramWithSource(e->ocl.context, 1,
@@ -93,4 +98,5 @@ void					init_opencl(t_env *e, int name)
 		/* Set OpenCL Kernel Parameters */
 	ret = clSetKernelArg(e->ocl.kernel, 0, sizeof(cl_mem), (void *)&(e->ocl.v_mem_obj));
 	ret = clSetKernelArg(e->ocl.kernel, 1, sizeof(cl_mem), (void *)&(e->ocl.tab_mem_obj));
+	ret = clSetKernelArg(e->ocl.kernel, 2, sizeof(cl_mem), (void *)&(e->ocl.c_mem_obj));
 }

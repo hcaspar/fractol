@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:32:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/27 22:20:40 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 11:20:34 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ t_env				*init_env(void)
 	return (e);
 }
 
-cl_float4			init_values(cl_float4 *v_init)
+void				init_values(t_env *e)
 {
-	cl_float4		v;
-
-	v.x = -1.8;
-	v.y = -1.2;
-	v.z = 2.4;
-	v.w = 50;
-	*(v_init) = v;
-	return (v);
+	e->v.x = -1.8;
+	e->v.y = -1.2;
+	e->v.z = 2.4;
+	e->v.w = 50;
+	(e->v_init) = e->v;
+	e->c.x = 0.285;
+	e->c.y = 0.01;
+	(e->c_init) = e->c;
 }
 
 t_state				init_states(void)
@@ -63,12 +63,13 @@ int					main(int ac, char **av)
 		init_opencl(e, MANDEL);
 	if (!ft_strcmp(av[1], "Julia"))
 		init_opencl(e, JULIA);
-	e->v = init_values(&e->v_init);
+	init_values(e);
 	new_window(e);
 	mlx_hook(e->mlx.win_ptr, 2, (1L << 0), key_press, e);
 	mlx_hook(e->mlx.win_ptr, 3, (1L << 0), key_release, e);
-	mlx_hook(e->mlx.win_ptr, 17, (1L << 17), red_cross, e);
 	mlx_hook(e->mlx.win_ptr, 4, (1L << 2), mouse_hook, e);
+	mlx_hook(e->mlx.win_ptr, 6, (1L << 6), motion_notify, e);
+	mlx_hook(e->mlx.win_ptr, 17, (1L << 17), red_cross, e);
 	mlx_loop_hook(e->mlx.mlx_ptr, redraw, e);
 	mlx_loop(e->mlx.mlx_ptr);
 	return (0);
