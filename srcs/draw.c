@@ -6,14 +6,19 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 11:27:39 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 16:49:31 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void				put_pixel(int x, int y, t_color col, t_env *e)
+void				put_pixel(int i, t_color col, t_env *e)
 {
+	int				x;
+	int				y;
+
+	y = i / MAX_X;
+	x = i % MAX_Y;
 	e->mlx.string[x * 4 + y * e->mlx.size_line] = col.blu;
 	e->mlx.string[x * 4 + y * e->mlx.size_line + 1] = col.gre;
 	e->mlx.string[x * 4 + y * e->mlx.size_line + 2] = col.red;
@@ -29,12 +34,10 @@ t_color				set_color(cl_uchar3 tab)
 	return (color);
 }
 
-void				draw(t_env *e, cl_float4 v, cl_float2 c)
+void				draw(t_env *e, cl_double4 v, cl_double2 c)
 {
 	int				ret;
 	int				i;
-	int				x;
-	int				y;
 	t_color			color;
 
 	i = -1;
@@ -44,9 +47,9 @@ void				draw(t_env *e, cl_float4 v, cl_float2 c)
 		e->c_tab[i] = c;
 	}
 	ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.v_mem_obj, \
-		CL_TRUE, 0, e->ocl.gws * sizeof(cl_float4), e->v_tab, 0, NULL, NULL);
+		CL_TRUE, 0, e->ocl.gws * sizeof(cl_double4), e->v_tab, 0, NULL, NULL);
 	ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.c_mem_obj, \
-		CL_TRUE, 0, e->ocl.gws * sizeof(cl_float2), e->c_tab, 0, NULL, NULL);
+		CL_TRUE, 0, e->ocl.gws * sizeof(cl_double2), e->c_tab, 0, NULL, NULL);
 	ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, \
 		NULL, &(e->ocl.gws), &(e->ocl.lws), 0, NULL, NULL);
 	ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, \
@@ -55,9 +58,7 @@ void				draw(t_env *e, cl_float4 v, cl_float2 c)
 	while (++i < (int)e->ocl.gws)
 	{
 		color = set_color(e->tab[i]);
-		y = i / MAX_X;
-		x = i % MAX_Y;
-		put_pixel(x, y, color, e);
+		put_pixel(i, color, e);
 	}
 }
 

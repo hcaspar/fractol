@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:32:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 11:20:34 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 15:12:21 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_env				*init_env(void)
 	e = (t_env*)malloc(sizeof(t_env));
 	if (e == NULL)
 		exit_prog(e, "Malloc error\n");
-	e->zoom = 1.0;
 	return (e);
 }
 
 void				init_values(t_env *e)
 {
-	e->v.x = -1.8;
-	e->v.y = -1.2;
-	e->v.z = 2.4;
-	e->v.w = 50;
+	e->zoom = 1.0;
+	e->v.x = -1.6;
+	e->v.y = -1.6;
+	e->v.z = 3.2;
+	e->v.w = 100;
 	(e->v_init) = e->v;
 	e->c.x = 0.285;
 	e->c.y = 0.01;
@@ -45,6 +45,7 @@ t_state				init_states(void)
 	state.left = 0;
 	state.it_add = 0;
 	state.it_sub = 0;
+	state.pause = 0;
 	return (state);
 }
 

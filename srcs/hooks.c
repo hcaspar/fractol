@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:29:38 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 11:33:11 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/28 16:49:21 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ int			key_press(int keycode, t_env *e)
 		e->state.it_add = 1;
 	if (keycode == DOWN)
 		e->state.it_sub = 1;
+	if (keycode == SPACE && e->state.pause == 0)
+		e->state.pause = 1;
+	else if (keycode == SPACE && e->state.pause == 1)
+		e->state.pause = 0;
 	return (0);
 }
 
@@ -62,15 +66,17 @@ int			key_release(int keycode, t_env *e)
 int			mouse_hook(int keycode, int x, int y, t_env *e)
 {
 	if (keycode == 1)
-		zoom_out(x, y, e);
-	if (keycode == 2)
 		zoom_in(x, y, e);
+	if (keycode == 2)
+		zoom_out(x, y, e);
 	return (0);
 }
 
 int			motion_notify(int x, int y, t_env *e)
 {
-	e->c.x = e->c_init.x + ((float)x - MAX_X / 2) / 1000;
-	e->c.y = e->c_init.y + ((float)y - MAX_Y / 2) / 1000;
+	if (e->state.pause == 1)
+		return (0);
+	e->c.x = e->c_init.x + ((double)x - MAX_X / 2) / 1000;
+	e->c.y = e->c_init.y + ((double)y - MAX_Y / 2) / 1000;
 	return (0);
 }

@@ -1,18 +1,20 @@
-__kernel	void	mandel(__global float4 *v,
+#pragma OPENCL EXTENSION cl_khr_fp64 : enable
+
+__kernel	void	mandel(__global double4 *v,
 						   __global uchar3 *tab,
-						   __global float2 *c)
+						   __global double2 *c)
 {
 	int				id;
-	float			zoom_x;
-	float			zoom_y;
-	float			i;
+	double			zoom_x;
+	double			zoom_y;
+	double			i;
 	int				x;
 	int				y;
-	float			c_r;
-	float			c_i;
-	float			z_r;
-	float			z_i;
-	float			tmp;
+	double			c_r;
+	double			c_i;
+	double			z_r;
+	double			z_i;
+	double			tmp;
 
 	id = get_global_id(0);
 	y = id / 1024;
@@ -40,21 +42,21 @@ __kernel	void	mandel(__global float4 *v,
 	tab[id].z = sin(0.01 * (double)i + 1) * 230 + 25;
 }
 
-__kernel	void	julia(__global float4 *v,
+__kernel	void	julia(__global double4 *v,
 						  __global uchar3 *tab,
-						  __global float2 *c)
+						  __global double2 *c)
 {
 	int				id;
-	float			zoom_x;
-	float			zoom_y;
-	float			i;
+	double			zoom_x;
+	double			zoom_y;
+	double			i;
 	int				x;
 	int				y;
-	float			c_r;
-	float			c_i;
-	float			z_r;
-	float			z_i;
-	float			tmp;
+	double			c_r;
+	double			c_i;
+	double			z_r;
+	double			z_i;
+	double			tmp;
 
 	id = get_global_id(0);
 	y = id / 1024;
