@@ -6,11 +6,57 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 20:25:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 21:01:12 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 21:23:47 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+char				*mandel(cl_double4 v, char *tab, int size_line)
+{
+	int				x;
+	int				y;
+	double			zoom;
+	double			i;
+	double			c_r;
+	double			c_i;
+	double			z_r;
+	double			z_i;
+	double			tmp;
+
+	y = -1;
+	while (++y < MAX_Y)
+	{
+		x = -1;
+		while (++x < MAX_X)
+		{
+			zoom = SIZE / v.z;
+			c_r = x / zoom + v.x;
+			c_i = y / zoom + v.y;
+			z_r = 0;
+			z_i = 0;
+			i = 0;
+			tmp = z_r;
+			z_r = z_r * z_r - z_i * z_i + c_r;
+			z_i = 2 * z_i * tmp + c_i;
+			i++;
+			while (z_r * z_r + z_i * z_i < 4 && i < v.w)
+			{
+				tmp = z_r;
+				z_r = z_r * z_r - z_i * z_i + c_r;
+				z_i = 2 * z_i * tmp + c_i;
+				i++;
+			}
+			tab[x * 4 + y * size_line] = \
+			(sin(0.016 * i + 2) * 230 + 25) * 1;
+			tab[x * 4 + y * size_line + 1] = \
+			(sin(0.016 * i + 3) * 230 + 25) * 2;
+			tab[x * 4 + y * size_line + 2] = \
+			(sin(0.016 * i + 4) * 230 + 25) * 3;
+		}
+	}
+	return (tab);
+}
 
 char				*julia(cl_double4 v, char *tab, cl_double2 c, int size_line)
 {
@@ -48,11 +94,11 @@ char				*julia(cl_double4 v, char *tab, cl_double2 c, int size_line)
 				i++;
 			}
 			tab[x * 4 + y * size_line] = \
-			(sin(0.016 * i + 6) * 230 + 25) * 1;
+			(sin(0.016 * i + 2) * 230 + 25) * 1;
 			tab[x * 4 + y * size_line + 1] = \
-			(sin(0.016 * i + 7) * 230 + 25) * 2;
-			tab[x * 4 + y * size_line + 1] = \
-			(sin(0.016 * i + 8) * 230 + 25) * 3;
+			(sin(0.016 * i + 3) * 230 + 25) * 2;
+			tab[x * 4 + y * size_line + 2] = \
+			(sin(0.016 * i + 4) * 230 + 25) * 3;
 		}
 	}
 	return (tab);
@@ -94,11 +140,11 @@ char				*ship(cl_double4 v, char *tab, int size_line)
 				i++;
 			}
 			tab[x * 4 + y * size_line] = \
-			(sin(0.016 * i + 6) * 230 + 25) * 1;
+			(sin(0.016 * i + 2) * 230 + 25) * 1;
 			tab[x * 4 + y * size_line + 1] = \
-			(sin(0.016 * i + 7) * 230 + 25) * 2;
-			tab[x * 4 + y * size_line + 1] = \
-			(sin(0.016 * i + 8) * 230 + 25) * 3;
+			(sin(0.016 * i + 3) * 230 + 25) * 2;
+			tab[x * 4 + y * size_line + 2] = \
+			(sin(0.016 * i + 4) * 230 + 25) * 3;
 		}
 	}
 	return (tab);

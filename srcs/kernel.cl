@@ -37,7 +37,7 @@ __kernel	void	mandel(__global double4 *v,
 		z_i = 2 * z_i * tmp + c_i;
 		i++;
 	}
-	tab[id] = (sin(0.016 * i + id % 4 + 5) * 230 + 25) * ((id + 1) % 4);
+	tab[id] = (sin(0.016 * i + id % 4 + 2) * 230 + 25) * ((id + 1) % 4);
 }
 
 __kernel	void	julia(__global double4 *v,
@@ -113,5 +113,5 @@ __kernel	void	ship(__global double4 *v,
 		z_i = 2 * fabs(z_i * tmp) + c_i;
 		i++;
 	}
-	tab[id] = (sin(0.016 * i + id % 4 + 5) * 230 + 25) * ((id + 1) % 4);
+	tab[id] = (sin(0.016 * i + id % 4 + 2) * 230 + 25) * ((id + 1) % 4);
 }

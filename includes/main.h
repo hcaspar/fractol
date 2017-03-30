@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 21:00:15 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 21:14:58 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,9 @@ void					zoom_out(int x, int y, t_env *e);
 
 void					init_opencl(t_env *e, int name);
 
-char					*ship(cl_double4 v, char *tab, int size_line);
+char					*mandel(cl_double4 v, char *tab, int size_line);
 char					*julia(cl_double4 v, char *tab, cl_double2 c, \
 								int size_line);
+char					*ship(cl_double4 v, char *tab, int size_line);
 
 #endif

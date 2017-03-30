@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 21:03:32 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 21:14:55 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void				draw_cpu(t_env *e, cl_double4 v, cl_double2 c)
 {
+	if (e->name == MANDEL)
+		e->mlx.string = mandel(v, e->mlx.string, e->mlx.size_line);
 	if (e->name == JULIA)
 		e->mlx.string = julia(v, e->mlx.string, c, e->mlx.size_line);
 	if (e->name == SHIP)
