@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 16:48:27 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 21:00:15 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 
 # define MAX_X 1024
 # define MAX_Y 1024
+# define SIZE 1024
 
 # define MANDEL 1
 # define JULIA 2
+# define SHIP 3
 
 # define MAX_SOURCE_SIZE (0x100000)
 
@@ -81,13 +83,15 @@ typedef struct			s_env
 	t_mlx				mlx;
 	t_ocl				ocl;
 	t_state				state;
-	cl_float4			v;
-	cl_float4			v_init;
-	cl_float2			c;
-	cl_float2			c_init;
-	cl_float2			*c_tab;
-	cl_float4			*v_tab;
-	float				zoom;
+	int					name;
+	int					pu;
+	cl_double4			v;
+	cl_double4			v_init;
+	cl_double2			c;
+	cl_double2			c_init;
+	cl_double2			*c_tab;
+	cl_double4			*v_tab;
+	double				zoom;
 }						t_env;
 
 void					exit_prog(t_env *e, char *msg);
@@ -96,7 +100,7 @@ int						red_cross(t_env *e);
 void					new_window(t_env *e);
 void					init_image(t_env *e);
 
-void					draw(t_env *e, cl_float4 v, cl_float2 c);
+void					draw_gpu(t_env *e, cl_double4 v, cl_double2 c);
 int						redraw(t_env *e);
 
 int						mouse_hook(int keycode, int x, int y, t_env *e);
@@ -109,5 +113,9 @@ void					zoom_in(int x, int y, t_env *e);
 void					zoom_out(int x, int y, t_env *e);
 
 void					init_opencl(t_env *e, int name);
+
+char					*ship(cl_double4 v, char *tab, int size_line);
+char					*julia(cl_double4 v, char *tab, cl_double2 c, \
+								int size_line);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:32:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 16:57:39 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 21:04:05 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_env				*init_env(void)
 
 void				init_values(t_env *e)
 {
+	e->pu = 1;
 	e->zoom = 1.0;
 	e->v.x = -1.6;
 	e->v.y = -1.6;
@@ -49,24 +50,34 @@ t_state				init_states(void)
 	return (state);
 }
 
+void				get_name(t_env *e, char *av)
+{
+	if (!ft_strcmp(av, "Mandel"))
+		e->name = MANDEL;
+	else if (!ft_strcmp(av, "Julia"))
+		e->name = JULIA;
+	else if (!ft_strcmp(av, "Ship"))
+		e->name = SHIP;
+	else
+		exit_prog(e, "Choose a valid fractal\n");
+}
+
 int					main(int ac, char **av)
 {
 	t_env			*e;
-	int				i;
 
 	e = NULL;
-	i = 1;
 	if (ac < 2)
 		exit_prog(e, "Missing argument\n");
 	e = init_env();
 	e->state = init_states();
 	new_window(e);
 	init_image(e);
-	if (!ft_strcmp(av[1], "Mandel"))
-		init_opencl(e, MANDEL);
-	if (!ft_strcmp(av[1], "Julia"))
-		init_opencl(e, JULIA);
+	get_name(e, av[1]);
+	init_opencl(e, e->name);
 	init_values(e);
+	if (av[2] && !ft_strcmp(av[2], "cpu"))
+		e->pu = 0;
 	mlx_hook(e->mlx.win_ptr, 2, (1L << 0), key_press, e);
 	mlx_hook(e->mlx.win_ptr, 3, (1L << 0), key_release, e);
 	mlx_hook(e->mlx.win_ptr, 4, (1L << 2), mouse_hook, e);
