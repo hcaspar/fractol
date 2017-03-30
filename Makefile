@@ -6,7 +6,7 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/03/28 10:57:35 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/03/30 16:21:21 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,15 @@ SRCS_DIR = srcs/
 
 OBJS = $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
-INCS_DIR = includes libft/includes
+INCS_DIR = includes libft/includes minilibx_macos/
 
 INCS = $(addprefix -I , $(INCS_DIR))
 
 CFLAGS = -Wall -Werror -Wextra $(INCS)
 
 FLAGS = $(CFLAGS) -L libft/ -lft -framework OpenCL \
-		-L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit \
+		-L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit \
+
 
 CC = gcc
 
@@ -36,10 +37,12 @@ $(NAME): $(OBJS)
 
 lib:
 	make -C libft/
+	make -C minilibx_macos/
 
 clean:
 	rm -f $(OBJS)
 	make -C libft/ clean
+	make -C minilibx_macos/ clean
 
 fclean: clean
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:32:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 15:12:21 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 14:19:12 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ int					main(int ac, char **av)
 		exit_prog(e, "Missing argument\n");
 	e = init_env();
 	e->state = init_states();
+	new_window(e);
+	init_image(e);
 	if (!ft_strcmp(av[1], "Mandel"))
 		init_opencl(e, MANDEL);
 	if (!ft_strcmp(av[1], "Julia"))
 		init_opencl(e, JULIA);
 	init_values(e);
-	new_window(e);
 	mlx_hook(e->mlx.win_ptr, 2, (1L << 0), key_press, e);
 	mlx_hook(e->mlx.win_ptr, 3, (1L << 0), key_release, e);
 	mlx_hook(e->mlx.win_ptr, 4, (1L << 2), mouse_hook, e);

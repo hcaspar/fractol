@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:29:38 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 16:49:21 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 14:16:02 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			motion_notify(int x, int y, t_env *e)
 {
 	if (e->state.pause == 1)
 		return (0);
-	e->c.x = e->c_init.x + ((double)x - MAX_X / 2) / 1000;
-	e->c.y = e->c_init.y + ((double)y - MAX_Y / 2) / 1000;
+	e->c.x = e->c_init.x + ((float)x - MAX_X / 2) / 1000;
+	e->c.y = e->c_init.y + ((float)y - MAX_Y / 2) / 1000;
 	return (0);
 }

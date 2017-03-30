@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 22:46:32 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 16:50:42 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 16:19:58 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 void 					init_ws(t_env *e)
 {
-	e->ocl.gws = MAX_X * MAX_Y;
+	e->ocl.gws = MAX_X * MAX_Y * 4;
 	e->ocl.lws = 1024;
 	while (e->ocl.lws > e->ocl.gws || e->ocl.gws % e->ocl.lws != 0)
 		e->ocl.lws /= 2;
-	e->v_tab = (cl_double4*)malloc(sizeof(cl_double4) * e->ocl.gws);
+	e->v_tab = (cl_float4*)malloc(sizeof(cl_float4) * e->ocl.gws);
 	if (e->v_tab == NULL)
 		exit_prog(e, "Malloc error\n");
-	e->tab = (cl_uchar3*)malloc(sizeof(cl_uchar3) * e->ocl.gws);
-	if (e->tab == NULL)
-		exit_prog(e, "Malloc error\n");
-	e->c_tab = (cl_double2*)malloc(sizeof(cl_double2) * e->ocl.gws);
+	e->c_tab = (cl_float2*)malloc(sizeof(cl_float2) * e->ocl.gws);
 	if (e->c_tab == NULL)
 		exit_prog(e, "Malloc error\n");
 }
@@ -75,11 +72,11 @@ void					init_opencl(t_env *e, int name)
 		/* Create Memory Buffer */
 
 	e->ocl.v_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
-			e->ocl.gws * sizeof(cl_double4), NULL, &ret);
+			e->ocl.gws * sizeof(cl_float4), NULL, &ret);
 	e->ocl.tab_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_WRITE_ONLY,
-            e->ocl.gws * sizeof(cl_uchar3), NULL, &ret);
+            e->ocl.gws * sizeof(char) * 4, NULL, &ret);
 	e->ocl.c_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
-			e->ocl.gws * sizeof(cl_double2), NULL, &ret);
+			e->ocl.gws * sizeof(cl_float2), NULL, &ret);
 
 		/* Create Kernel Program from the source */
 	e->ocl.program = clCreateProgramWithSource(e->ocl.context, 1,

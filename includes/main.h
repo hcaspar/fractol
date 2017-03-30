@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 16:48:59 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 16:20:08 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "keys.h"
 # include <math.h>
 # include <stdlib.h>
-# include <mlx.h>
+# include "mlx.h"
+//# include "SDL_config.h"
 # include <stdio.h>
 
 # ifdef __APPLE__
@@ -81,14 +82,13 @@ typedef struct			s_env
 	t_mlx				mlx;
 	t_ocl				ocl;
 	t_state				state;
-	cl_double4			v;
-	cl_double4			v_init;
-	cl_double2			c;
-	cl_double2			c_init;
-	cl_double2			*c_tab;
-	cl_uchar3			*tab;
-	cl_double4			*v_tab;
-	double				zoom;
+	cl_float4			v;
+	cl_float4			v_init;
+	cl_float2			c;
+	cl_float2			c_init;
+	cl_float2			*c_tab;
+	cl_float4			*v_tab;
+	float				zoom;
 }						t_env;
 
 void					exit_prog(t_env *e, char *msg);
@@ -97,7 +97,7 @@ int						red_cross(t_env *e);
 void					new_window(t_env *e);
 void					init_image(t_env *e);
 
-void					draw(t_env *e, cl_double4 v, cl_double2 c);
+void					draw(t_env *e, cl_float4 v, cl_float2 c);
 int						redraw(t_env *e);
 
 int						mouse_hook(int keycode, int x, int y, t_env *e);

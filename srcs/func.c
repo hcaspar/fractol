@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:57:25 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/28 17:02:58 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 14:15:58 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void				zoom_in(int x, int y, t_env *e)
 {
-	double			scale;
-	double			ztemp;
+	float			scale;
+	float			ztemp;
 
 	ztemp = e->v.z;
 	e->zoom *= 1.1;
@@ -31,8 +31,8 @@ void				zoom_in(int x, int y, t_env *e)
 
 void				zoom_out(int x, int y, t_env *e)
 {
-	double			scale;
-	double			ztemp;
+	float			scale;
+	float			ztemp;
 
 	ztemp = e->v.z;
 	e->zoom /= 1.1;
@@ -55,7 +55,7 @@ void				state_loop(t_env *e)
 	if (e->state.left)
 		e->v.x -= 0.05 / e->zoom;
 	if (e->state.it_add)
-		e->v.w += 1.0;
-	if (e->state.it_sub && e->v.w > 1.0)
-		e->v.w -= 1.0;
+		e->v.w += 5.0;
+	if (e->state.it_sub && e->v.w > 5.0)
+		e->v.w -= 5.0;
 }
