@@ -6,33 +6,11 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 16:19:51 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 16:42:46 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-void				put_pixel(int i, t_color col, t_env *e)
-{
-	int				x;
-	int				y;
-
-	y = i / MAX_X;
-	x = i % MAX_Y;
-	e->mlx.string[x * 4 + y * e->mlx.size_line] = col.blu;
-	e->mlx.string[x * 4 + y * e->mlx.size_line + 1] = col.gre;
-	e->mlx.string[x * 4 + y * e->mlx.size_line + 2] = col.red;
-}
-
-t_color				set_color(cl_uchar3 tab)
-{
-	t_color			color;
-
-	color.red = tab.x;
-	color.gre = tab.y;
-	color.blu = tab.z;
-	return (color);
-}
 
 void				draw(t_env *e, cl_float4 v, cl_float2 c)
 {

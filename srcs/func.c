@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:57:25 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 14:15:58 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 17:40:39 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,48 @@
 
 void				zoom_in(int x, int y, t_env *e)
 {
-	float			scale;
+	float			xscale;
+	float			yscale;
 	float			ztemp;
+	float			xtemp;
+	float			ytemp;
 
 	ztemp = e->v.z;
+	xtemp = e->v.x;
+	ytemp = e->v.y;
 	e->zoom *= 1.1;
 	e->v.z = e->v_init.z / e->zoom;
 	e->v.x += (ztemp - e->v.z) / 2;
 	e->v.y += (ztemp - e->v.z) / 2;
-	x = x - MAX_X / 2;
-	y = y - MAX_Y / 2;
-	scale = e->v.z / MAX_X;
-	e->v.x += x * scale;
-	e->v.y += y * scale;
+	xscale = e->v.z / MAX_X;
+	yscale = e->v.z / MAX_Y;
+	x = (x - MAX_X / 2);
+	y = (y - MAX_Y / 2);
+	e->v.x += (x * (ztemp / MAX_X)) - (x * xscale);
+	e->v.y += (y * (ztemp / MAX_Y)) - (y * yscale);
 }
 
 void				zoom_out(int x, int y, t_env *e)
 {
-	float			scale;
+	float			xscale;
+	float			yscale;
 	float			ztemp;
+	float			xtemp;
+	float			ytemp;
 
 	ztemp = e->v.z;
+	xtemp = e->v.x;
+	ytemp = e->v.y;
 	e->zoom /= 1.1;
 	e->v.z = e->v_init.z / e->zoom;
 	e->v.x += (ztemp - e->v.z) / 2;
 	e->v.y += (ztemp - e->v.z) / 2;
-	x = x - MAX_X / 2;
-	y = y - MAX_Y / 2;
-	scale = e->v.z / MAX_X;
+	xscale = e->v.z / MAX_X;
+	yscale = e->v.z / MAX_Y;
+	x = (x - MAX_X / 2);
+	y = (y - MAX_Y / 2);
+	e->v.x += (x * (ztemp / MAX_X)) - (x * xscale);
+	e->v.y += (y * (ztemp / MAX_Y)) - (y * yscale);
 }
 
 void				state_loop(t_env *e)

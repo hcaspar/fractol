@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 16:20:08 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/03/30 16:48:27 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <math.h>
 # include <stdlib.h>
 # include "mlx.h"
-//# include "SDL_config.h"
 # include <stdio.h>
 
 # ifdef __APPLE__
