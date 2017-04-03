@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:32:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 21:04:05 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/03 13:39:14 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_env				*init_env(void)
 void				init_values(t_env *e)
 {
 	e->pu = 1;
+	e->oldtime = (double)clock();
 	e->zoom = 1.0;
 	e->v.x = -1.6;
 	e->v.y = -1.6;

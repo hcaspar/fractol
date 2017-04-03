@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 21:14:58 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/03 13:31:17 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include "mlx.h"
 # include <stdio.h>
+# include <time.h>
 
 # ifdef __APPLE__
 #  include <OpenCL/opencl.h>
@@ -83,6 +84,7 @@ typedef struct			s_env
 	t_mlx				mlx;
 	t_ocl				ocl;
 	t_state				state;
+	float				oldtime;
 	int					name;
 	int					pu;
 	cl_double4			v;

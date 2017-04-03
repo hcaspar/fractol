@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 21:14:55 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/03 13:39:36 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,24 @@ void				draw_gpu(t_env *e, cl_double4 v, cl_double2 c)
 		0, NULL, NULL);
 }
 
+char				*draw_fps(float *oldtime)
+{
+	float			delta;
+	float			newtime;
+	char			*tmp;
+
+	tmp = NULL;
+	newtime = (double)clock();
+	delta = (double)(newtime - *oldtime) / CLOCKS_PER_SEC;
+	*oldtime = newtime;
+	tmp = ft_itoa((int)(1.0 / delta));
+	return (tmp);
+}
+
 int					redraw(t_env *e)
 {
+	char			*tmp;
+
 	mlx_destroy_image(e->mlx.mlx_ptr, e->mlx.image);
 	init_image(e);
 	state_loop(e);
@@ -55,5 +71,11 @@ int					redraw(t_env *e)
 		draw_cpu(e, e->v, e->c);
 	mlx_put_image_to_window(e->mlx.mlx_ptr, e->mlx.win_ptr, \
 							e->mlx.image, 0, 0);
+	tmp = draw_fps(&e->oldtime);
+	if (tmp)
+	{
+		mlx_string_put(e->mlx.mlx_ptr, e->mlx.win_ptr, 5, 5, 0xFFFFFF, tmp);
+		free(tmp);
+	}
 	return (0);
 }
