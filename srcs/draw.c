@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/03 13:39:36 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/05 20:43:52 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void				draw_cpu(t_env *e, cl_double4 v, cl_double2 c)
 {
 	if (e->name == MANDEL)
-		e->mlx.string = mandel(v, e->mlx.string, e->mlx.size_line);
+		e->sdl.surf->pixels = mandel(v, e->sdl.surf->pixels, e->sdl.surf->pitch);
 	if (e->name == JULIA)
-		e->mlx.string = julia(v, e->mlx.string, c, e->mlx.size_line);
+		e->sdl.surf->pixels = julia(v, e->sdl.surf->pixels, c, e->sdl.surf->pitch);
 	if (e->name == SHIP)
-		e->mlx.string = ship(v, e->mlx.string, e->mlx.size_line);
+		e->sdl.surf->pixels = ship(v, e->sdl.surf->pixels, e->sdl.surf->pitch);
 }
 
 void				draw_gpu(t_env *e, cl_double4 v, cl_double2 c)
@@ -40,7 +40,7 @@ void				draw_gpu(t_env *e, cl_double4 v, cl_double2 c)
 	ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, \
 		NULL, &(e->ocl.gws), &(e->ocl.lws), 0, NULL, NULL);
 	ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, \
-		CL_TRUE, 0, e->ocl.gws * sizeof(char) * 4, e->mlx.string, \
+		CL_TRUE, 0, e->ocl.gws * sizeof(char) * 4, e->sdl.surf->pixels, \
 		0, NULL, NULL);
 }
 
@@ -58,24 +58,20 @@ char				*draw_fps(float *oldtime)
 	return (tmp);
 }
 
-int					redraw(t_env *e)
+void				redraw(t_env *e)
 {
 	char			*tmp;
 
-	mlx_destroy_image(e->mlx.mlx_ptr, e->mlx.image);
-	init_image(e);
 	state_loop(e);
 	if (e->pu == 1)
 		draw_gpu(e, e->v, e->c);
 	else
 		draw_cpu(e, e->v, e->c);
-	mlx_put_image_to_window(e->mlx.mlx_ptr, e->mlx.win_ptr, \
-							e->mlx.image, 0, 0);
+	SDL_UpdateWindowSurface(e->sdl.p_win);
 	tmp = draw_fps(&e->oldtime);
 	if (tmp)
 	{
-		mlx_string_put(e->mlx.mlx_ptr, e->mlx.win_ptr, 5, 5, 0xFFFFFF, tmp);
+		printf("%s\n", tmp);
 		free(tmp);
 	}
-	return (0);
 }

@@ -6,19 +6,19 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/04/03 18:12:23 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/04/05 20:38:09 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRCS = main.c exit.c hooks.c draw.c opencl.c func.c fracts.c test.c
+SRCS = main.c exit.c hooks.c draw.c opencl.c func.c fracts.c sdl.c
 
 SRCS_DIR = srcs/
 
 OBJS = $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
-INCS_DIR = includes libft/includes minilibx_macos/ SDL2-2.0.5/include
+INCS_DIR = includes libft/includes SDL2-2.0.5/include
 
 INCS = $(addprefix -I , $(INCS_DIR))
 
@@ -34,8 +34,8 @@ FLAG_SDL = -I/$(SDL_INC) $(SDL_LIB) -framework Cocoa -framework CoreAudio \
 
 CFLAGS = -Wall -Werror -Wextra $(INCS)
 
-FLAGS = $(CFLAGS) -L libft/ -lft -framework OpenCL \
-		-L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit \
+FLAGS = $(CFLAGS) -L libft/ -lft -framework OpenCL -framework OpenGL \
+		-framework AppKit
 
 CC = gcc
 
@@ -46,17 +46,14 @@ $(NAME): $(OBJS)
 
 lib:
 	make -C libft/
-	make -C minilibx_macos/
 	make -C SDL2-2.0.5/
 
 clean:
 	rm -f $(OBJS)
-	make -C libft/ clean
-	make -C minilibx_macos/ clean
-	make -C SDL2-2.0.5/ clean
 
 fclean: clean
 	rm -f $(NAME)
 	make -C libft/ fclean
+	make -C SDL2-2.0.5/ clean
 
 re: fclean all

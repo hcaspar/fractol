@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/03 18:12:38 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/05 20:58:20 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,12 @@ typedef struct			s_color
 	unsigned char		blu;
 }						t_color;
 
-typedef struct			s_mlx
+typedef struct			s_sdl
 {
-	void				*mlx_ptr;
-	void				*win_ptr;
-	void				*image;
-	char				*string;
-	int					bpp;
-	int					size_line;
-	int					endian;
-}						t_mlx;
+	SDL_Window			*p_win;
+	SDL_Event			event;
+	SDL_Surface			*surf;
+}						t_sdl;
 
 typedef struct			s_ocl
 {
@@ -81,7 +77,7 @@ typedef struct			s_state
 
 typedef struct			s_env
 {
-	t_mlx				mlx;
+	t_sdl				sdl;
 	t_ocl				ocl;
 	t_state				state;
 	float				oldtime;
@@ -97,18 +93,13 @@ typedef struct			s_env
 }						t_env;
 
 void					exit_prog(t_env *e, char *msg);
-int						red_cross(t_env *e);
 
-void					new_window(t_env *e);
-void					init_image(t_env *e);
+void					redraw(t_env *e);
 
-void					draw_gpu(t_env *e, cl_double4 v, cl_double2 c);
-int						redraw(t_env *e);
-
-int						mouse_hook(int keycode, int x, int y, t_env *e);
+int						mouse_hook(SDL_Event event, int x, int y, t_env *e);
 int						motion_notify(int x, int y, t_env *e);
-int						key_press(int keycode, t_env *e);
-int						key_release(int keycode, t_env *e);
+int						key_press(SDL_Event event, t_env *e);
+int						key_release(SDL_Event event, t_env *e);
 void					state_loop(t_env *e);
 
 void					zoom_in(int x, int y, t_env *e);
@@ -121,6 +112,7 @@ char					*julia(cl_double4 v, char *tab, cl_double2 c, \
 								int size_line);
 char					*ship(cl_double4 v, char *tab, int size_line);
 
-void					test(void);
+void					init_sdl(t_env *e);
+void					sdl_loop(t_env *e);
 
 #endif

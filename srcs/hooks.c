@@ -6,69 +6,63 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:29:38 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/03 14:19:25 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/05 20:59:01 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include "keys.h"
 
-int			red_cross(t_env *e)
+int			key_press(SDL_Event event, t_env *e)
 {
-	exit_prog(e, NULL);
-	return (0);
-}
-
-int			key_press(int keycode, t_env *e)
-{
-	keycode == ESC ? exit_prog(e, NULL) : 0;
-	if (keycode == W)
+	if (event.key.keysym.sym == SDLK_ESCAPE)
+		exit_prog(e, NULL);
+	if (event.key.keysym.sym == SDLK_w)
 		e->state.fwd = 1;
-	if (keycode == S)
+	if (event.key.keysym.sym == SDLK_s)
 		e->state.back = 1;
-	if (keycode == D)
+	if (event.key.keysym.sym == SDLK_d)
 		e->state.right = 1;
-	if (keycode == A)
+	if (event.key.keysym.sym == SDLK_a)
 		e->state.left = 1;
-	if (keycode == R)
+	if (event.key.keysym.sym == SDLK_r)
 	{
 		e->zoom = 1.0;
 		e->v = e->v_init;
 		e->c = e->c_init;
 	}
-	if (keycode == UP)
+	if (event.key.keysym.sym == SDLK_UP)
 		e->state.it_add = 1;
-	if (keycode == DOWN)
+	if (event.key.keysym.sym == SDLK_DOWN)
 		e->state.it_sub = 1;
-	if (keycode == SPACE && e->state.pause == 0)
+	if (event.key.keysym.sym == SDLK_SPACE && e->state.pause == 0)
 		e->state.pause = 1;
-	else if (keycode == SPACE && e->state.pause == 1)
+	else if (event.key.keysym.sym == SDLK_SPACE && e->state.pause == 1)
 		e->state.pause = 0;
 	return (0);
 }
 
-int			key_release(int keycode, t_env *e)
+int			key_release(SDL_Event event, t_env *e)
 {
-	if (keycode == W)
+	if (event.key.keysym.sym == SDLK_w)
 		e->state.fwd = 0;
-	if (keycode == S)
+	if (event.key.keysym.sym == SDLK_s)
 		e->state.back = 0;
-	if (keycode == D)
+	if (event.key.keysym.sym == SDLK_d)
 		e->state.right = 0;
-	if (keycode == A)
+	if (event.key.keysym.sym == SDLK_a)
 		e->state.left = 0;
-	if (keycode == UP)
+	if (event.key.keysym.sym == SDLK_UP)
 		e->state.it_add = 0;
-	if (keycode == DOWN)
+	if (event.key.keysym.sym == SDLK_DOWN)
 		e->state.it_sub = 0;
 	return (0);
 }
 
-int			mouse_hook(int keycode, int x, int y, t_env *e)
+int			mouse_hook(SDL_Event event, int x, int y, t_env *e)
 {
-	if (keycode == 1)
+	if (event.button == SDL_BUTTON_LEFT)
 		zoom_in(x, y, e);
-	if (keycode == 2)
+	if (event.button == SDL_BUTTON_RIGHT)
 		zoom_out(x, y, e);
 	return (0);
 }
