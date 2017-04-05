@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/03 13:31:17 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/03 18:12:38 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define MAIN_H
 
 # include "libft.h"
-# include "keys.h"
 # include <math.h>
 # include <stdlib.h>
 # include "mlx.h"
 # include <stdio.h>
 # include <time.h>
+# include "SDL.h"
 
 # ifdef __APPLE__
 #  include <OpenCL/opencl.h>
@@ -120,5 +120,7 @@ char					*mandel(cl_double4 v, char *tab, int size_line);
 char					*julia(cl_double4 v, char *tab, cl_double2 c, \
 								int size_line);
 char					*ship(cl_double4 v, char *tab, int size_line);
+
+void					test(void);
 
 #endif

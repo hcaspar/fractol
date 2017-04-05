@@ -6,43 +6,54 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/03/30 20:47:08 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/04/03 18:12:23 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRCS = main.c exit.c hooks.c draw.c opencl.c func.c fracts.c
+SRCS = main.c exit.c hooks.c draw.c opencl.c func.c fracts.c test.c
 
 SRCS_DIR = srcs/
 
 OBJS = $(addprefix $(SRCS_DIR), $(SRCS:.c=.o))
 
-INCS_DIR = includes libft/includes minilibx_macos/
+INCS_DIR = includes libft/includes minilibx_macos/ SDL2-2.0.5/include
 
 INCS = $(addprefix -I , $(INCS_DIR))
+
+SDL_DIR = SDL2-2.0.5
+
+SDL_LIB = $(SDL_DIR)/build/.libs/libSDL2.a
+
+SDL_INC = $(SDL_DIR)/include/
+
+FLAG_SDL = -I/$(SDL_INC) $(SDL_LIB) -framework Cocoa -framework CoreAudio \
+		-framework AudioToolbox -framework ForceFeedback -framework CoreVideo \
+		-framework Carbon -framework IOKit -liconv
 
 CFLAGS = -Wall -Werror -Wextra $(INCS)
 
 FLAGS = $(CFLAGS) -L libft/ -lft -framework OpenCL \
 		-L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit \
 
-
 CC = gcc
 
 all: lib $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(FLAG_SDL) $(OBJS) -o $(NAME)
 
 lib:
 	make -C libft/
 	make -C minilibx_macos/
+	make -C SDL2-2.0.5/
 
 clean:
 	rm -f $(OBJS)
 	make -C libft/ clean
 	make -C minilibx_macos/ clean
+	make -C SDL2-2.0.5/ clean
 
 fclean: clean
 	rm -f $(NAME)

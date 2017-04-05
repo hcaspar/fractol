@@ -6,11 +6,12 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:29:38 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 19:33:49 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/03 14:19:25 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include "keys.h"
 
 int			red_cross(t_env *e)
 {

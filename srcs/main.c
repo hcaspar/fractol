@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:32:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/03 13:39:14 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/03 18:14:44 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,22 @@ int					main(int ac, char **av)
 	e = NULL;
 	if (ac < 2)
 		exit_prog(e, "Missing argument\n");
+	test();
 	e = init_env();
 	e->state = init_states();
-	new_window(e);
-	init_image(e);
+//	new_window(e);
+//	init_image(e);
 	get_name(e, av[1]);
 	init_opencl(e, e->name);
 	init_values(e);
 	if (av[2] && !ft_strcmp(av[2], "cpu"))
 		e->pu = 0;
-	mlx_hook(e->mlx.win_ptr, 2, (1L << 0), key_press, e);
+/*	mlx_hook(e->mlx.win_ptr, 2, (1L << 0), key_press, e);
 	mlx_hook(e->mlx.win_ptr, 3, (1L << 0), key_release, e);
 	mlx_hook(e->mlx.win_ptr, 4, (1L << 2), mouse_hook, e);
 	mlx_hook(e->mlx.win_ptr, 6, (1L << 6), motion_notify, e);
 	mlx_hook(e->mlx.win_ptr, 17, (1L << 17), red_cross, e);
 	mlx_loop_hook(e->mlx.mlx_ptr, redraw, e);
 	mlx_loop(e->mlx.mlx_ptr);
-	return (0);
+*/	return (0);
 }
