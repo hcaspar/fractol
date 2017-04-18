@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/18 14:44:04 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 20:45:06 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,12 @@ void				redraw(t_env *e)
 		draw_gpu(e, e->v, e->c);
 	else
 		draw_cpu(e, e->v, e->c);
-	SDL_UpdateWindowSurface(e->sdl.p_win);
 	tmp = draw_fps(&e->oldtime);
 	if (tmp)
 	{
-		printf("%s\n", tmp);
+		e->sdl.texte = TTF_RenderText_Solid(e->sdl.police, tmp, e->sdl.color);
+		SDL_BlitSurface(e->sdl.texte, NULL, e->sdl.surf, &e->sdl.position);
 		free(tmp);
 	}
+	SDL_UpdateWindowSurface(e->sdl.p_win);
 }

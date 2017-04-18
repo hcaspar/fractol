@@ -1,0 +1,14 @@
+prefix=/Users/hcaspar/fractol/freetype
+exec_prefix=/Users/hcaspar/fractol/freetype
+libdir=/Users/hcaspar/fractol/freetype/lib
+includedir=/Users/hcaspar/fractol/freetype/include
+
+Name: FreeType 2
+URL: http://freetype.org
+Description: A free, high-quality, and portable font engine.
+Version: 19.0.13
+Requires:
+Requires.private: 
+Libs: -L${libdir} -lfreetype
+Libs.private: -lz -lbz2
+Cflags: -I${includedir}/freetype2

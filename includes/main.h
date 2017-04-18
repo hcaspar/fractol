@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/18 14:43:44 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 20:06:25 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <time.h>
-# include "SDL.h"
+# include "SDL2/SDL.h"
+# include "SDL2/SDL_ttf.h"
 
 # ifdef __APPLE__
 #  include <OpenCL/opencl.h>
@@ -48,6 +49,10 @@ typedef struct			s_sdl
 	SDL_Window			*p_win;
 	SDL_Event			event;
 	SDL_Surface			*surf;
+	SDL_Surface			*texte;
+	TTF_Font			*police;
+	SDL_Rect			position;
+	SDL_Color			color;
 }						t_sdl;
 
 typedef struct			s_ocl

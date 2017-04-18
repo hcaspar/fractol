@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 17:33:46 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/18 14:43:07 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 20:49:50 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ void			init_sdl(t_env *e)
     if (!e->sdl.p_win)
 		exit_prog(e, "SDL window error\n");
 	e->sdl.surf = SDL_GetWindowSurface(e->sdl.p_win);
+	if (TTF_Init() < 0)
+		exit_prog(e, "TTF init error\n");
+	e->sdl.police = TTF_OpenFont("police.ttf", 22);
+	if (!e->sdl.police)
+		exit_prog(e, "TTF Open Font error\n");
+	e->sdl.position.x = 5;
+	e->sdl.position.y = 5;
+	e->sdl.color.r = 0;
+	e->sdl.color.g = 0;
+	e->sdl.color.b = 0;
 }
