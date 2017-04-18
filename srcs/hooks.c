@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:29:38 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/05 20:59:01 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:44:00 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int			key_release(SDL_Event event, t_env *e)
 
 int			mouse_hook(SDL_Event event, int x, int y, t_env *e)
 {
-	if (event.button == SDL_BUTTON_LEFT)
+	if (event.button.button == SDL_BUTTON_LEFT)
 		zoom_in(x, y, e);
-	if (event.button == SDL_BUTTON_RIGHT)
+	if (event.button.button == SDL_BUTTON_RIGHT)
 		zoom_out(x, y, e);
 	return (0);
 }
@@ -71,7 +71,7 @@ int			motion_notify(int x, int y, t_env *e)
 {
 	if (e->state.pause == 1)
 		return (0);
-	e->c.x = e->c_init.x + ((double)x - MAX_X / 2) / 1000;
-	e->c.y = e->c_init.y + ((double)y - MAX_Y / 2) / 1000;
+	e->c.x = e->c_init.x + ((float)x - MAX_X / 2) / 1000;
+	e->c.y = e->c_init.y + ((float)y - MAX_Y / 2) / 1000;
 	return (0);
 }

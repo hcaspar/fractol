@@ -6,23 +6,23 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 20:25:54 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/03/30 21:24:48 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:43:48 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char				*mandel(cl_double4 v, char *tab, int size_line)
+char				*mandel(cl_float4 v, char *tab, int size_line)
 {
 	int				x;
 	int				y;
-	double			zoom;
-	double			i;
-	double			c_r;
-	double			c_i;
-	double			z_r;
-	double			z_i;
-	double			tmp;
+	float			zoom;
+	float			i;
+	float			c_r;
+	float			c_i;
+	float			z_r;
+	float			z_i;
+	float			tmp;
 
 	y = -1;
 	while (++y < MAX_Y)
@@ -58,17 +58,17 @@ char				*mandel(cl_double4 v, char *tab, int size_line)
 	return (tab);
 }
 
-char				*julia(cl_double4 v, char *tab, cl_double2 c, int size_line)
+char				*julia(cl_float4 v, char *tab, cl_float2 c, int size_line)
 {
 	int				x;
 	int				y;
-	double			zoom;
-	double			i;
-	double			c_r;
-	double			c_i;
-	double			z_r;
-	double			z_i;
-	double			tmp;
+	float			zoom;
+	float			i;
+	float			c_r;
+	float			c_i;
+	float			z_r;
+	float			z_i;
+	float			tmp;
 
 	y = -1;
 	while (++y < MAX_Y)
@@ -104,17 +104,17 @@ char				*julia(cl_double4 v, char *tab, cl_double2 c, int size_line)
 	return (tab);
 }
 
-char				*ship(cl_double4 v, char *tab, int size_line)
+char				*ship(cl_float4 v, char *tab, int size_line)
 {
 	int				x;
 	int				y;
-	double			zoom;
-	double			i;
-	double			c_r;
-	double			c_i;
-	double			z_r;
-	double			z_i;
-	double			tmp;
+	float			zoom;
+	float			i;
+	float			c_r;
+	float			c_i;
+	float			z_r;
+	float			z_i;
+	float			tmp;
 
 	y = -1;
 	while (++y < MAX_Y)

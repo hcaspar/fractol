@@ -6,13 +6,13 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:55:52 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/05 20:43:52 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:44:04 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void				draw_cpu(t_env *e, cl_double4 v, cl_double2 c)
+void				draw_cpu(t_env *e, cl_float4 v, cl_float2 c)
 {
 	if (e->name == MANDEL)
 		e->sdl.surf->pixels = mandel(v, e->sdl.surf->pixels, e->sdl.surf->pitch);
@@ -22,7 +22,7 @@ void				draw_cpu(t_env *e, cl_double4 v, cl_double2 c)
 		e->sdl.surf->pixels = ship(v, e->sdl.surf->pixels, e->sdl.surf->pitch);
 }
 
-void				draw_gpu(t_env *e, cl_double4 v, cl_double2 c)
+void				draw_gpu(t_env *e, cl_float4 v, cl_float2 c)
 {
 	int				ret;
 	int				i;
@@ -34,9 +34,9 @@ void				draw_gpu(t_env *e, cl_double4 v, cl_double2 c)
 		e->c_tab[i] = c;
 	}
 	ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.v_mem_obj, \
-		CL_TRUE, 0, e->ocl.gws * sizeof(cl_double4), e->v_tab, 0, NULL, NULL);
+		CL_TRUE, 0, e->ocl.gws * sizeof(cl_float4), e->v_tab, 0, NULL, NULL);
 	ret = clEnqueueWriteBuffer(e->ocl.command_queue, e->ocl.c_mem_obj, \
-		CL_TRUE, 0, e->ocl.gws * sizeof(cl_double2), e->c_tab, 0, NULL, NULL);
+		CL_TRUE, 0, e->ocl.gws * sizeof(cl_float2), e->c_tab, 0, NULL, NULL);
 	ret = clEnqueueNDRangeKernel(e->ocl.command_queue, e->ocl.kernel, 1, \
 		NULL, &(e->ocl.gws), &(e->ocl.lws), 0, NULL, NULL);
 	ret = clEnqueueReadBuffer(e->ocl.command_queue, e->ocl.tab_mem_obj, \
@@ -51,8 +51,8 @@ char				*draw_fps(float *oldtime)
 	char			*tmp;
 
 	tmp = NULL;
-	newtime = (double)clock();
-	delta = (double)(newtime - *oldtime) / CLOCKS_PER_SEC;
+	newtime = (float)clock();
+	delta = (float)(newtime - *oldtime) / CLOCKS_PER_SEC;
 	*oldtime = newtime;
 	tmp = ft_itoa((int)(1.0 / delta));
 	return (tmp);

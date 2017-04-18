@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/05 20:58:20 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:43:44 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include <math.h>
 # include <stdlib.h>
-# include "mlx.h"
 # include <stdio.h>
 # include <time.h>
 # include "SDL.h"
@@ -83,13 +82,13 @@ typedef struct			s_env
 	float				oldtime;
 	int					name;
 	int					pu;
-	cl_double4			v;
-	cl_double4			v_init;
-	cl_double2			c;
-	cl_double2			c_init;
-	cl_double2			*c_tab;
-	cl_double4			*v_tab;
-	double				zoom;
+	cl_float4			v;
+	cl_float4			v_init;
+	cl_float2			c;
+	cl_float2			c_init;
+	cl_float2			*c_tab;
+	cl_float4			*v_tab;
+	float				zoom;
 }						t_env;
 
 void					exit_prog(t_env *e, char *msg);
@@ -107,10 +106,10 @@ void					zoom_out(int x, int y, t_env *e);
 
 void					init_opencl(t_env *e, int name);
 
-char					*mandel(cl_double4 v, char *tab, int size_line);
-char					*julia(cl_double4 v, char *tab, cl_double2 c, \
+char					*mandel(cl_float4 v, char *tab, int size_line);
+char					*julia(cl_float4 v, char *tab, cl_float2 c, \
 								int size_line);
-char					*ship(cl_double4 v, char *tab, int size_line);
+char					*ship(cl_float4 v, char *tab, int size_line);
 
 void					init_sdl(t_env *e);
 void					sdl_loop(t_env *e);

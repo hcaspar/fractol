@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 17:33:46 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/05 21:02:48 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:43:07 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			sdl_hook(t_env *e, SDL_Event event)
 	if (event.type == SDL_KEYUP)
 		key_release(event, e);
 	if (event.type == SDL_MOUSEBUTTONDOWN)
-		mouse_hook(event, x, y, e);
+		mouse_hook(event, event.button.x, event.button.y, e);
 	if (event.type == SDL_MOUSEMOTION)
 		motion_notify(event.motion.x, event.motion.y, e);
 

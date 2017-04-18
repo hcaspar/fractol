@@ -1,21 +1,19 @@
-#pragma OPENCL EXTENSION cl_khr_fp64 : enable
-
 #define		SIZE 1024
 
-__kernel	void	mandel(__global double4 *v,
+__kernel	void	mandel(__global float4 *v,
 						   __global char *tab,
-						   __global double2 *c)
+						   __global float2 *c)
 {
 	int				id;
-	double			zoom;
-	double			i;
+	float			zoom;
+	float			i;
 	int				x;
 	int				y;
-	double			c_r;
-	double			c_i;
-	double			z_r;
-	double			z_i;
-	double			tmp;
+	float			c_r;
+	float			c_i;
+	float			z_r;
+	float			z_i;
+	float			tmp;
 
 	id = get_global_id(0);
 	y = (id / 4) / SIZE;
@@ -40,20 +38,20 @@ __kernel	void	mandel(__global double4 *v,
 	tab[id] = (sin(0.016 * i + id % 4 + 2) * 230 + 25) * ((id + 1) % 4);
 }
 
-__kernel	void	julia(__global double4 *v,
+__kernel	void	julia(__global float4 *v,
 						  __global char *tab,
-						  __global double2 *c)
+						  __global float2 *c)
 {
 	int				id;
-	double			zoom;
-	double			i;
+	float			zoom;
+	float			i;
 	int				x;
 	int				y;
-	double			c_r;
-	double			c_i;
-	double			z_r;
-	double			z_i;
-	double			tmp;
+	float			c_r;
+	float			c_i;
+	float			z_r;
+	float			z_i;
+	float			tmp;
 
 	id = get_global_id(0);
 	y = (id / 4) / SIZE;
@@ -78,20 +76,20 @@ __kernel	void	julia(__global double4 *v,
 	tab[id] = (sin(0.016 * i + id % 4 + 2) * 230 + 25) * ((id + 1) % 4);
 }
 
-__kernel	void	ship(__global double4 *v,
+__kernel	void	ship(__global float4 *v,
 						 __global char *tab,
-						 __global double2 *c)
+						 __global float2 *c)
 {
 	int				id;
-	double			zoom;
-	double			i;
+	float			zoom;
+	float			i;
 	int				x;
 	int				y;
-	double			c_r;
-	double			c_i;
-	double			z_r;
-	double			z_i;
-	double			tmp;
+	float			c_r;
+	float			c_i;
+	float			z_r;
+	float			z_i;
+	float			tmp;
 
 	id = get_global_id(0);
 	y = (id / 4) / SIZE;

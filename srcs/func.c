@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 10:57:25 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/03 12:03:34 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/18 14:44:07 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void				zoom_in(int x, int y, t_env *e)
 {
-	double			xscale;
-	double			yscale;
-	double			ztemp;
-	double			xtemp;
-	double			ytemp;
+	float			xscale;
+	float			yscale;
+	float			ztemp;
+	float			xtemp;
+	float			ytemp;
 
 	ztemp = e->v.z;
 	xtemp = e->v.x;
@@ -37,11 +37,11 @@ void				zoom_in(int x, int y, t_env *e)
 
 void				zoom_out(int x, int y, t_env *e)
 {
-	double			xscale;
-	double			yscale;
-	double			ztemp;
-	double			xtemp;
-	double			ytemp;
+	float			xscale;
+	float			yscale;
+	float			ztemp;
+	float			xtemp;
+	float			ytemp;
 
 	ztemp = e->v.z;
 	xtemp = e->v.x;
