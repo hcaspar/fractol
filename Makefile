@@ -6,7 +6,7 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/04/18 20:54:07 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/04/18 20:59:27 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,15 +53,17 @@ lib:
 
 config:
 	echo "$(SDL_DIR)/configure --prefix=$HOME/fractol/$(SDL_DIR)"
+	make -j6 -C $(SDL_DIR)
+	make -C $(SDL_DIR) install
 	echo "$(TTF_DIR)/configure --prefix=$HOME/fractol/$(TTF_DIR) \
 	--with-freetype-prefix=$HOME/fractol/freetype \
 	--with-sdl-prefix=$HOME/fractol/$(SDL_DIR)"
-	make -j6 -C $(SDL_DIR)
 	make -C $(TTF_DIR)
+	make -C $(TTF_DIR) install
 
 install:
-	make -C $(TTF_DIR) install
 	make -C $(SDL_DIR) install
+	make -C $(TTF_DIR) install
 
 uninstall:
 	make -C $(TTF_DIR) uninstall
