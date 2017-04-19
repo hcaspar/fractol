@@ -6,7 +6,7 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/04/19 16:15:50 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/04/19 16:36:24 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,12 +52,12 @@ lib:
 	make -C $(TTF_DIR)
 
 config:
-	echo "$(SDL_DIR)/configure -C --prefix=$(PWD)/$(SDL_DIR)"
+	cd $(SDL_DIR) && ./configure --prefix=$(PWD) && cd ..
 	make -j6 -C $(SDL_DIR)
 	make -C $(SDL_DIR) install
-	echo "$(TTF_DIR)/configure --prefix=$(PWD)/$(TTF_DIR) \
-	--with-freetype-prefix=$(PWD)/freetype \
-	--with-sdl-prefix=$(PWD)/$(SDL_DIR)"
+	cd $(TTF_DIR) && ./configure --prefix=$(PWD) \
+	--with-freetype-prefix=$(PWD)/../freetype \
+	--with-sdl-prefix=$(PWD)/../$(SDL_DIR) && cd ..
 	make -C $(TTF_DIR)
 	make -C $(TTF_DIR) install
 
