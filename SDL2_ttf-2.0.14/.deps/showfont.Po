@@ -72,15 +72,15 @@ showfont.o: showfont.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_errno_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_string.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_main.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_stdinc.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_config.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_platform.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_main.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_stdinc.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_config.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_platform.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/AvailabilityMacros.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/TargetConditionals.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/begin_code.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/close_code.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/begin_code.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/close_code.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_blkcnt_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_blksize_t.h \
@@ -122,48 +122,47 @@ showfont.o: showfont.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/runetype.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/_types/_wint_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/math.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_assert.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_atomic.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_audio.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_error.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_endian.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_mutex.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_thread.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_rwops.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_clipboard.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_cpuinfo.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_assert.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_atomic.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_audio.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_error.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_endian.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_mutex.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_thread.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_rwops.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_clipboard.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_cpuinfo.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/mmintrin.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/xmmintrin.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/mm_malloc.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/emmintrin.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/f16cintrin.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_events.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_video.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_pixels.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_rect.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_surface.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_blendmode.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_keyboard.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_keycode.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_scancode.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_mouse.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_joystick.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_gamecontroller.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_quit.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_gesture.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_touch.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_filesystem.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_haptic.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_hints.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_loadso.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_log.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_messagebox.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_power.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_render.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_system.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_timer.h \
-  /Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_version.h \
-  SDL_ttf.h
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_events.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_video.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_pixels.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_rect.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_surface.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_blendmode.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_keyboard.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_keycode.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_scancode.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_mouse.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_joystick.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_gamecontroller.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_quit.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_gesture.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_touch.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_filesystem.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_haptic.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_hints.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_loadso.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_log.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_messagebox.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_power.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_render.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_system.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_timer.h \
+  /Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_version.h SDL_ttf.h
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/stdlib.h:
 
@@ -311,23 +310,23 @@ showfont.o: showfont.c \
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/secure/_string.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_main.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_main.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_stdinc.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_stdinc.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_config.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_config.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_platform.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_platform.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/AvailabilityMacros.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/TargetConditionals.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/begin_code.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/begin_code.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/close_code.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/close_code.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/sys/types.h:
 
@@ -411,25 +410,25 @@ showfont.o: showfont.c \
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/math.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_assert.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_assert.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_atomic.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_atomic.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_audio.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_audio.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_error.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_error.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_endian.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_endian.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_mutex.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_mutex.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_thread.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_thread.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_rwops.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_rwops.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_clipboard.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_clipboard.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_cpuinfo.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_cpuinfo.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/mmintrin.h:
 
@@ -441,56 +440,56 @@ showfont.o: showfont.c \
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/f16cintrin.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_events.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_events.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_video.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_video.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_pixels.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_pixels.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_rect.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_rect.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_surface.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_surface.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_blendmode.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_blendmode.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_keyboard.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_keyboard.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_keycode.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_keycode.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_scancode.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_scancode.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_mouse.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_mouse.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_joystick.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_joystick.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_gamecontroller.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_gamecontroller.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_quit.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_quit.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_gesture.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_gesture.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_touch.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_touch.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_filesystem.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_filesystem.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_haptic.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_haptic.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_hints.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_hints.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_loadso.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_loadso.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_log.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_log.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_messagebox.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_messagebox.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_power.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_power.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_render.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_render.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_system.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_system.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_timer.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_timer.h:
 
-/Users/hcaspar/fractol/SDL2_ttf-2.0.14/../SDL2-2.0.5//include/SDL2/SDL_version.h:
+/Users/hcaspar/fractol/SDL2-2.0.5/include/SDL2/SDL_version.h:
 
 SDL_ttf.h:

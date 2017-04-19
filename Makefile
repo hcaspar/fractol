@@ -6,7 +6,7 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/04/19 16:36:24 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/04/19 16:59:05 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,33 +49,29 @@ $(NAME): $(OBJS)
 lib:
 	make -C libft/
 	make -j6 -C $(SDL_DIR)
+	make -C $(SDL_DIR) install
 	make -C $(TTF_DIR)
+	make -C $(TTF_DIR) install
 
 config:
-	cd $(SDL_DIR) && ./configure --prefix=$(PWD) && cd ..
+	cd $(SDL_DIR) && ./configure --prefix=$(PWD)/$(SDL_DIR)
 	make -j6 -C $(SDL_DIR)
 	make -C $(SDL_DIR) install
-	cd $(TTF_DIR) && ./configure --prefix=$(PWD) \
-	--with-freetype-prefix=$(PWD)/../freetype \
-	--with-sdl-prefix=$(PWD)/../$(SDL_DIR) && cd ..
+	cd $(TTF_DIR) && ./configure --prefix=$(PWD)/$(TTF_DIR) \
+	--with-freetype-prefix=$(PWD)/freetype \
+	--with-sdl-prefix=$(PWD)/$(SDL_DIR)
 	make -C $(TTF_DIR)
 	make -C $(TTF_DIR) install
-
-install:
-	make -C $(SDL_DIR) install
-	make -C $(TTF_DIR) install
-
-uninstall:
-	make -C $(TTF_DIR) uninstall
-	make -C $(SDL_DIR) uninstall
 
 clean:
 	rm -f $(OBJS)
 	make -C SDL2-2.0.5/ clean
 	make -C SDL2_ttf-2.0.14/ clean
 
-fclean: clean uninstall
+fclean: clean
 	rm -f $(NAME)
 	make -C libft/ fclean
+	make -C $(TTF_DIR) uninstall
+	make -C $(SDL_DIR) uninstall
 
-re: fclean all install
+re: fclean all
