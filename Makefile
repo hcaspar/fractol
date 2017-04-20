@@ -6,17 +6,25 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/04/19 16:59:05 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/04/20 18:53:52 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SDL_DIR = SDL2-2.0.5
+SDL_DIR = SDL2
 
-TTF_DIR = SDL2_ttf-2.0.14
+FREETYPE_DIR = freetype
 
-SDL_INC = $(SDL_DIR)/include/
+TTF_DIR = SDL2_ttf
+
+SDL_SRC_DIR = SDL2-2.0.5
+
+FREETYPE_SRC_DIR = freetype-2.7.1
+
+TTF_SRC_DIR = SDL2_ttf-2.0.14
+
+SDL_INC = $(SDL_DIR)/include/SDL2/
 
 TTF_INC = $(TTF_DIR)/include/
 
@@ -47,31 +55,40 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(FLAG_SDL) $(FLAG_TTF) $(OBJS) -o $(NAME)
 
 lib:
-	make -C libft/
 	make -j6 -C $(SDL_DIR)
 	make -C $(SDL_DIR) install
+	make -C $(FREETYPE_DIR)
+	make -C $(FREETYPE_DIR) install
 	make -C $(TTF_DIR)
 	make -C $(TTF_DIR) install
 
 config:
-	cd $(SDL_DIR) && ./configure --prefix=$(PWD)/$(SDL_DIR)
+	mkdir $(SDL_DIR) && mkdir $(FREETYPE_DIR) && mkdir $(TTF_DIR)
+	cd $(SDL_DIR) && ../$(SDL_SRC_DIR)/configure --prefix=$(PWD)/$(SDL_DIR)
 	make -j6 -C $(SDL_DIR)
 	make -C $(SDL_DIR) install
-	cd $(TTF_DIR) && ./configure --prefix=$(PWD)/$(TTF_DIR) \
-	--with-freetype-prefix=$(PWD)/freetype \
+	cd $(FREETYPE_DIR) && ../$(FREETYPE_SRC_DIR)/configure --prefix=$(PWD)/$(FREETYPE_DIR)
+	make -C $(FREETYPE_DIR)
+	make -C $(FREETYPE_DIR) install
+	cd $(TTF_DIR) && ../$(TTF_SRC_DIR)/configure --prefix=$(PWD)/$(TTF_DIR) \
+	--with-freetype-prefix=$(PWD)/$(FREETYPE_DIR) \
 	--with-sdl-prefix=$(PWD)/$(SDL_DIR)
 	make -C $(TTF_DIR)
 	make -C $(TTF_DIR) install
 
 clean:
 	rm -f $(OBJS)
-	make -C SDL2-2.0.5/ clean
-	make -C SDL2_ttf-2.0.14/ clean
+	make -C libft clean
+	make -C $(SDL_DIR) clean
+	make -C $(TTF_DIR) clean
+	make -C $(FREETYPE_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C libft/ fclean
+	make -C libft fclean
 	make -C $(TTF_DIR) uninstall
 	make -C $(SDL_DIR) uninstall
+	make -C $(FREETYPE_DIR) uninstall
+	rm -rf $(SDL_DIR) && rm -rf $(FREETYPE_DIR) && rm -rf $(TTF_DIR)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/18 20:06:25 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/20 18:49:25 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <time.h>
-# include "SDL2/SDL.h"
+# include "SDL.h"
 # include "SDL2/SDL_ttf.h"
 
 # ifdef __APPLE__

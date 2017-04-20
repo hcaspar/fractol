@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 17:33:46 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/18 20:49:50 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/19 19:21:08 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void			sdl_hook(t_env *e, SDL_Event event)
 		mouse_hook(event, event.button.x, event.button.y, e);
 	if (event.type == SDL_MOUSEMOTION)
 		motion_notify(event.motion.x, event.motion.y, e);
-
 }
 
 void			sdl_loop(t_env *e)
