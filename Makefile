@@ -6,7 +6,7 @@
 #    By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 17:34:04 by hcaspar           #+#    #+#              #
-#    Updated: 2017/04/20 18:53:52 by hcaspar          ###   ########.fr        #
+#    Updated: 2017/04/24 18:53:57 by hcaspar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,13 @@ INCS = $(addprefix -I , $(INCS_DIR))
 
 CFLAGS = -Wall -Werror -Wextra $(INCS)
 
-FLAGS = $(CFLAGS) -L libft/ -lft -framework OpenCL -framework OpenGL \
-		-framework AppKit
+UNAME := $(shell uname -s)
+
+ifeq ($(UNAME), Darwin)
+	FLAGS = $(CFLAGS) -L libft/ -lft -framework OpenCL
+else
+	FLAGS = $(CFLAGS) -L libft/ -lft -lOpenCL
+endif
 
 CC = gcc
 
@@ -55,6 +60,7 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(FLAG_SDL) $(FLAG_TTF) $(OBJS) -o $(NAME)
 
 lib:
+	make -C libft
 	make -j6 -C $(SDL_DIR)
 	make -C $(SDL_DIR) install
 	make -C $(FREETYPE_DIR)
@@ -63,7 +69,7 @@ lib:
 	make -C $(TTF_DIR) install
 
 config:
-	mkdir $(SDL_DIR) && mkdir $(FREETYPE_DIR) && mkdir $(TTF_DIR)
+	mkdir -p $(SDL_DIR) && mkdir -p $(FREETYPE_DIR) && mkdir -p $(TTF_DIR)
 	cd $(SDL_DIR) && ../$(SDL_SRC_DIR)/configure --prefix=$(PWD)/$(SDL_DIR)
 	make -j6 -C $(SDL_DIR)
 	make -C $(SDL_DIR) install
@@ -79,16 +85,16 @@ config:
 clean:
 	rm -f $(OBJS)
 	make -C libft clean
-	make -C $(SDL_DIR) clean
 	make -C $(TTF_DIR) clean
 	make -C $(FREETYPE_DIR) clean
+	make -C $(SDL_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
 	make -C libft fclean
 	make -C $(TTF_DIR) uninstall
-	make -C $(SDL_DIR) uninstall
 	make -C $(FREETYPE_DIR) uninstall
+	make -C $(SDL_DIR) uninstall
 	rm -rf $(SDL_DIR) && rm -rf $(FREETYPE_DIR) && rm -rf $(TTF_DIR)
 
-re: fclean all
+re: clean all
