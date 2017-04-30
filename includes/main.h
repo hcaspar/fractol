@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:45:14 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/20 18:49:25 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/30 16:53:00 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ typedef struct			s_sdl
 {
 	SDL_Window			*p_win;
 	SDL_Event			event;
-	SDL_Surface			*surf;
+	SDL_Surface			*image;
 	SDL_Surface			*texte;
+	SDL_Surface			*screen;
 	TTF_Font			*police;
-	SDL_Rect			position;
+	SDL_Rect			image_pos;
+	SDL_Rect			texte_pos;
 	SDL_Color			color;
 }						t_sdl;
 

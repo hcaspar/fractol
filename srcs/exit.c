@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 18:07:06 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/18 19:38:29 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/30 19:19:02 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ void			exit_prog(t_env *e, char *msg)
 			free(e->v_tab);
 		if (e->c_tab)
 			free(e->c_tab);
-		SDL_FreeSurface(e->sdl.texte);
+		if (e->sdl.image)
+			SDL_FreeSurface(e->sdl.image);
+		if (e->sdl.texte)
+			SDL_FreeSurface(e->sdl.texte);
+		if (e->sdl.screen)
+			SDL_FreeSurface(e->sdl.screen);
 		if (e->sdl.p_win)
 	    	SDL_DestroyWindow(e->sdl.p_win);
 	    SDL_Quit();

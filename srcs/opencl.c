@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 22:46:32 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/18 14:43:55 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/30 19:12:53 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void 					init_ws(t_env *e)
 {
-	e->ocl.gws = MAX_X * MAX_Y * 4;
+	e->ocl.gws = MAX_X * MAX_Y;
 	e->ocl.lws = 1024;
 	while (e->ocl.lws > e->ocl.gws || e->ocl.gws % e->ocl.lws != 0)
 		e->ocl.lws /= 2;
@@ -74,7 +74,7 @@ void					init_opencl(t_env *e, int name)
 	e->ocl.v_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
 			e->ocl.gws * sizeof(cl_float4), NULL, &ret);
 	e->ocl.tab_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_WRITE_ONLY,
-            e->ocl.gws * sizeof(char) * 4, NULL, &ret);
+            e->ocl.gws * sizeof(cl_uint), NULL, &ret);
 	e->ocl.c_mem_obj = clCreateBuffer(e->ocl.context, CL_MEM_READ_ONLY,
 			e->ocl.gws * sizeof(cl_float2), NULL, &ret);
 

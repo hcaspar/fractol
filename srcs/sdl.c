@@ -6,7 +6,7 @@
 /*   By: hcaspar <hcaspar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 17:33:46 by hcaspar           #+#    #+#             */
-/*   Updated: 2017/04/19 19:21:08 by hcaspar          ###   ########.fr       */
+/*   Updated: 2017/04/30 19:35:09 by hcaspar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void			sdl_loop(t_env *e)
 	while (SDL_PollEvent(&e->sdl.event) || 1)
 	{
 		redraw(e);
+//		SDL_FillRect(e->sdl.screen, NULL, 0);
 		sdl_hook(e, e->sdl.event);
 	}
 }
@@ -45,14 +46,17 @@ void			init_sdl(t_env *e)
 		SDL_WINDOWPOS_UNDEFINED, MAX_X, MAX_Y, SDL_WINDOW_SHOWN);
     if (!e->sdl.p_win)
 		exit_prog(e, "SDL window error\n");
-	e->sdl.surf = SDL_GetWindowSurface(e->sdl.p_win);
+	e->sdl.screen = SDL_GetWindowSurface(e->sdl.p_win);
+	e->sdl.image = SDL_CreateRGBSurfaceWithFormat(0, MAX_X, MAX_Y, 32, SDL_PIXELFORMAT_RGBA32);
 	if (TTF_Init() < 0)
 		exit_prog(e, "TTF init error\n");
 	e->sdl.police = TTF_OpenFont("police.ttf", 22);
 	if (!e->sdl.police)
 		exit_prog(e, "TTF Open Font error\n");
-	e->sdl.position.x = 5;
-	e->sdl.position.y = 5;
+	e->sdl.image_pos.x = 0;
+	e->sdl.image_pos.y = 0;
+	e->sdl.texte_pos.x = 15;
+	e->sdl.texte_pos.y = 15;
 	e->sdl.color.r = 0;
 	e->sdl.color.g = 0;
 	e->sdl.color.b = 0;
